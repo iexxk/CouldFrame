@@ -5,7 +5,8 @@ server:
   port: ${EUREKA_PORT:14031}
 eureka:
   instance:
-    hostname: ${EUREKA_HOST:localhost} #指定该Eureka实例的主机名
+    hostname: ${EUREKA_HOST:localhost}  #指定该Eureka实例的主机名
+    prefer-ip-address: false
   client:
   #  register-with-eureka: false  #Eureka默认也会作为客户端尝试注册，因此需禁用注册行为
    # fetch-registry: false
