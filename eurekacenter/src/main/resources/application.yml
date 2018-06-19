@@ -11,4 +11,4 @@ eureka:
   #  register-with-eureka: false  #Eureka默认也会作为客户端尝试注册，因此需禁用注册行为
    # fetch-registry: false
     serviceUrl:
-      defaultZone:  http://${EUREKA_HOST:localhost}:${EUREKA_PORT:14031}/eureka/
+      defaultZone:  http://${EUREKA_CENTER_HOST:localhost}:${EUREKA_PORT:14031}/eureka/
