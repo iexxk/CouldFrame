@@ -1,8 +1,10 @@
 server:
-  port: 14031
+  port: ${EUREKA_PORT:14031}
 eureka:
   instance:
-    hostname: eurekacenter #指定该Eureka实例的主机名
+    hostname: ${EUREKA_HOST:localhost} #指定该Eureka实例的主机名
   client:
-    register-with-eureka: false  #Eureka默认也会作为客户端尝试注册，因此需禁用注册行为
-    fetch-registry: false
+  #  register-with-eureka: false  #Eureka默认也会作为客户端尝试注册，因此需禁用注册行为
+   # fetch-registry: false
+    serviceUrl:
+      defaultZone:  http://${EUREKA_HOST:localhost}:${EUREKA_PORT:14031}/eureka/
