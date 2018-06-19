@@ -1,3 +1,6 @@
+spring:
+  application:
+    name: ${EUREKA_HOST:eureka-center}
 server:
   port: ${EUREKA_PORT:14031}
 eureka:
