@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.3.RELEASE'
+        springBootVersion ='2.0.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -22,7 +22,7 @@ configure(subprojects.findAll {
     sourceCompatibility = 1.8
 
     ext {
-        springCloudVersion = 'Finchley.RC2'
+        springCloudVersion = 'Finchley.M9'
     }
 
     dependencies {
