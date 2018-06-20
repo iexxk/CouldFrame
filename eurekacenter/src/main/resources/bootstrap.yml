@@ -1,8 +1,8 @@
 spring:
   application:
-    name: eurekacenter
+    name: ${APPLICATION_NAME:eurekacenter}
   cloud:
     config:
-      label: master #指明远程仓库的分支
-      profile: dev #dev(开发)、test(测试)、pro(正式)
-      uri: http://127.0.0.1:8096/  #配置中心地址
+      label: ${CONFIG_LABEL:master} #指明远程仓库的分支
+      profile: ${CONFIG_PROFILE:dev} #dev(开发)、test(测试)、pro(正式)
+      uri: http://${CONFIGSERVER_IP:configserver}:${CONFIGSERVER_PORT:14030}/  #配置中心地址
