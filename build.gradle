@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion ='2.0.1.RELEASE'
+        springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -9,9 +9,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-configure(subprojects.findAll {
-    it.name == 'eurekacenter'
-}) {
+
+allprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'org.springframework.boot'
@@ -26,7 +25,6 @@ configure(subprojects.findAll {
     }
 
     dependencies {
-        compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
         testCompile('org.springframework.boot:spring-boot-starter-test')
     }
 
@@ -35,8 +33,6 @@ configure(subprojects.findAll {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
-}
-allprojects {
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/milestone" }

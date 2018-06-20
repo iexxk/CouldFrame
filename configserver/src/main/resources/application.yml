@@ -1,0 +1,14 @@
+server:
+  port: 14030
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      label: master #指明远程仓库的分支
+      server:
+        git:
+          uri: https://github.com/xuanfong1/CouldFrame/   #配置仓库git地址
+          search-paths: config/devrepo   #配置仓库路径
+#          username:   #访问git仓库的用户名，这里因为是开放项目所以不需要设置
+#          password:   #访问git仓库的密码/${EUREKA_CENTER_HOST:localhost}:${EUREKA_CENTER_PORT:14031}/eureka/

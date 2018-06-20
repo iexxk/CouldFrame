@@ -5,7 +5,7 @@ pipeline {
     parameters {
         choice(name: 'project_choice',
                 choices: 'eurekacenter' +
-                        '\neurekaclient' +
+                        '\nconfigserver' +
                         '\neurekafeign' +
                         '\neurekazuul' +
                         '\nribbonrest' +
