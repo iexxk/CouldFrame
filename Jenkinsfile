@@ -28,7 +28,7 @@ pipeline {
             steps{
                 dir("${params.project_choice}"){  //切换执行目录
                     script {  //需要用script包裹，就能使用脚本式语言
-                        docker.build("${env.JOB_NAME}/${params.project_choice}:${env.BUILD_NUMBER}".toLowerCase())
+                        docker.build("${env.JOB_NAME}/${params.project_choice}:latest".toLowerCase())
                     }
                     echo "构建镜像"+"${env.JOB_NAME}/${params.project_choice}:${env.BUILD_NUMBER}".toLowerCase()+"完成"
                 }
