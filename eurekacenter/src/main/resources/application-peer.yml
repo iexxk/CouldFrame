@@ -1,0 +1,10 @@
+#多节点模式
+server:
+  port: ${EUREKA_PORT}
+eureka:
+  instance:
+    hostname: ${EUREKA_HOST}  #指定该Eureka实例的主机名，需要host映射
+    prefer-ip-address: false
+  client:
+    serviceUrl:  #高可用
+      defaultZone:  ${EUREKA_CENTER_REG}

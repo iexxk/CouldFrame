@@ -1,11 +1,10 @@
+# 单机模式
 server:
-  port: ${EUREKA_PORT:14031}
+  port: ${EUREKA_PORT:14030}
 eureka:
   instance:
-    hostname: ${EUREKA_HOST:localhost}  #指定该Eureka实例的主机名
+    hostname: ${EUREKA_HOST:localhost}  #指定该Eureka实例的主机名,如果设置了主机名需要做host映射
     prefer-ip-address: false
   client:
-    register-with-eureka: false  #Eureka默认也会作为客户端尝试注册，因此需禁用注册行为
-    fetch-registry: false
- #   serviceUrl:  //高可用后面再测试
-  #    defaultZone:  http://${EUREKA_CENTER_HOST:localhost}:${EUREKA_CENTER_PORT:14031}/eureka/
+   register-with-eureka: false  #Eureka默认也会作为客户端尝试注册，因此需禁用注册行为
+   fetch-registry: false

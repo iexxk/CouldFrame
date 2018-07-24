@@ -1,0 +1,10 @@
+#多节点固定模式
+server:
+  port: ${EUREKA_PORT:14031}
+eureka:
+  instance:
+    hostname: ${EUREKA_HOST:eureka-center-peer1}  #指定该Eureka实例的主机名，需要host映射
+    prefer-ip-address: false
+  client:
+    serviceUrl:  #高可用
+      defaultZone:  ${EUREKA_CENTER_REG:http://eureka-center-peer2:14032/eureka/}
