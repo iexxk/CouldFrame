@@ -1,27 +1,29 @@
 #微服务架构
 version: '3'
 services:
-#  config-server:
-#    restart: always
-#    image: couldframe/master/configserver:latest
-#    ports:
-#      - 14030:14030
-#    deploy:
-#      replicas: 1
-#      restart_policy:
-#        condition: on-failure
-#      placement:
-#        constraints: [node.hostname == worker]
+  config-server:
+    restart: always
+    image: couldframe/master/configserver:latest
+    ports:
+      - 14030:14030
+    environment:
+      EUREKA_CENTER_REG: http://eureka-center-peer2:14032/eureka/,http://eureka-center-peer1:14031/eureka/
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == worker]
   eureka-center-peer1:
     restart: always
     image: couldframe/master/eurekacenter:latest
     ports:
       - 14031:14031
     command: ["java","-jar","app.jar","--spring.profiles.active=peer1"]   #以集群模式启动
-#    environment:
-#      EUREKA_PORT: 14031
-#      EUREKA_HOST: eureka-center-peer1  #对应服务名称
-#      EUREKA_CENTER_REG: http://eureka-center-peer2:14032/eureka/  #对应其他节点服务名称
+    environment:
+      EUREKA_PORT: 14031
+      EUREKA_HOST: eureka-center-peer1  #对应服务名称
+      EUREKA_CENTER_REG: http://eureka-center-peer2:14032/eureka/  #对应其他节点服务名称
     deploy:
       replicas: 1
       restart_policy:
@@ -34,10 +36,10 @@ services:
     ports:
       - 14032:14032
     command: ["java","-jar","app.jar","--spring.profiles.active=peer2"]  #以集群模式启动
-#    environment:
-#      EUREKA_PORT: 14032
-#      EUREKA_HOST: eureka-center-peer2  #对应服务名称
-#      EUREKA_CENTER_REG: http://eureka-center-peer1:14031/eureka/ #对应其他节点服务名称
+    environment:
+      EUREKA_PORT: 14032
+      EUREKA_HOST: eureka-center-peer2  #对应服务名称
+      EUREKA_CENTER_REG: http://eureka-center-peer1:14031/eureka/ #对应其他节点服务名称
     deploy:
       replicas: 1
       restart_policy:
