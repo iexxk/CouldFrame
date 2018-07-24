@@ -8,3 +8,6 @@ eureka:
   client:
     serviceUrl:  #高可用
       defaultZone:  ${EUREKA_CENTER_REG}
+spring:
+  application:
+    name: ${EUREKA_HOST}
