@@ -1,0 +1,33 @@
+#微服务架构
+version: '3'
+services:
+  config-server:
+    restart: always
+    image: couldframe/master/configserver:latest
+    ports:
+      - 14030:14030
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == worker]
+  eureka-center:
+    restart: always
+    image: couldframe/master/eurekacenter:latest
+    ports:
+      - 14031:14031
+      - 14032:14032
+      - 14033:14033
+ #不能加/actuator/health，请求超时，不能用wait-for-it.sh  ,不支持alpine ，经测试感觉怪，还使用 depends_on
+ #   command: ["./wait-for.sh", "config-server:14030", "--", "java","-jar","app.jar"]
+ #   volumes:
+ #    - "/dockerdata/wait-for.sh:/wait-for.sh"
+    depends_on:
+     - config-server
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == worker]
