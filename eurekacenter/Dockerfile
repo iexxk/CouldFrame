@@ -1,5 +1,5 @@
 #基础镜像选择alpine 小巧安全流行方便
-FROM java:8-jre-alpine
+FROM java:8-jre-alpine-cst
 #复制固定路径下打包好的jar包(target/*.jar)并重命名到容器跟目录(/app.jar)，或ADD
 COPY build/libs/*.jar app.jar
 #健康检查 -s 静默模式，不下载文件
