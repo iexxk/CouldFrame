@@ -1,30 +1,37 @@
 #微服务架构
 version: '3'
 services:
-  config-server:
+#  config-server:
+#    restart: always
+#    image: couldframe/master/configserver:latest
+#    ports:
+#      - 14030:14030
+#    deploy:
+#      replicas: 1
+#      restart_policy:
+#        condition: on-failure
+#      placement:
+#        constraints: [node.hostname == worker]
+  eureka-center-peer1:
     restart: always
-    image: couldframe/master/configserver:latest
-    ports:
-      - 14030:14030
+    image: couldframe/master/eurekacenter:latest
+    environment:
+      EUREKA_PORT: 14031
+      EUREKA_HOST: eureka-center-peer1  #对应服务名称
+      EUREKA_CENTER_REG: http://eureka-center-peer2:14032/eureka/  #对应其他节点服务名称
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
       placement:
         constraints: [node.hostname == worker]
-  eureka-center:
+  eureka-center-peer2:
     restart: always
     image: couldframe/master/eurekacenter:latest
-    ports:
-      - 14031:14031
-      - 14032:14032
-      - 14033:14033
- #不能加/actuator/health，请求超时，不能用wait-for-it.sh  ,不支持alpine ，经测试感觉怪，还使用 depends_on
- #   command: ["./wait-for.sh", "config-server:14030", "--", "java","-jar","app.jar"]
- #   volumes:
- #    - "/dockerdata/wait-for.sh:/wait-for.sh"
-    depends_on:
-     - config-server
+    environment:
+      EUREKA_PORT: 14032
+      EUREKA_HOST: eureka-center-peer2  #对应服务名称
+      EUREKA_CENTER_REG: http://eureka-center-peer1:14031/eureka/ #对应其他节点服务名称
     deploy:
       replicas: 1
       restart_policy:
