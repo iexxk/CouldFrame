@@ -22,7 +22,7 @@ services:
     image: couldframe/master/eurekacenter:latest
     ports:
       - 14031:14031
-    command: ["java","-jar","app.jar","--spring.profiles.active=peer"]   #以集群模式启动
+    command: ["java","-jar","app.jar","--spring.profiles.active=peer1"]   #以集群模式启动
     environment:
       EUREKA_PORT: 14031
       EUREKA_HOST: eureka-center-peer1  #对应服务名称
@@ -38,7 +38,7 @@ services:
     image: couldframe/master/eurekacenter:latest
     ports:
       - 14032:14032
-    command: ["java","-jar","app.jar","--spring.profiles.active=peer"]  #以集群模式启动
+    command: ["java","-jar","app.jar","--spring.profiles.active=peer2"]  #以集群模式启动
     environment:
       EUREKA_PORT: 14032
       EUREKA_HOST: eureka-center-peer2  #对应服务名称
