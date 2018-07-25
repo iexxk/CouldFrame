@@ -1,4 +1,7 @@
 #多节点模式
+spring:
+  application:
+    name: ${EUREKA_HOST}
 server:
   port: ${EUREKA_PORT}
 eureka:
@@ -10,6 +13,3 @@ eureka:
       defaultZone:  ${EUREKA_CENTER_REG}
     register-with-eureka: true
     fetch-registry: true
-spring:
-  application:
-    name: ${EUREKA_HOST}
