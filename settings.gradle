@@ -10,3 +10,4 @@
 rootProject.name = 'CouldFrame'
 include 'configserver'
 include 'eurekacenter'
+include 'gateway'
