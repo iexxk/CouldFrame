@@ -1,13 +1,13 @@
 #多节点动态参数模式
 spring:
   application:
-    name: ${EUREKA_HOST}
+    name: ${APPLICATION_NAME:eureka-center}
 server:
-  port: ${EUREKA_PORT}
+  port: ${EUREKA_PORT:14030}
 eureka:
   instance:
-    hostname: ${EUREKA_HOST}  #指定该Eureka实例的主机名，需要host映射
+    hostname: ${EUREKA_HOST:eureka-center-peer}  #指定该Eureka实例的主机名，需要host映射
     prefer-ip-address: false
   client:
     serviceUrl:  #高可用
-      defaultZone:  ${EUREKA_CENTER_REG}
+      defaultZone:  ${EUREKA_CENTER_REG:http://eureka-center-peer:14030/eureka/}
