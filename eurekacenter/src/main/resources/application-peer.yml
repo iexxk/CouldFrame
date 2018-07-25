@@ -1,13 +1,13 @@
 #多节点动态参数模式
 spring:
   application:
-    name: ${APPLICATION_NAME:eureka-center}
+    name: ${APPLICATION_NAME:eureka-center} #必须相同名字，所以这里默认不需要设置该参数
 server:
-  port: ${EUREKA_PORT}
+  port: ${EUREKA_PORT:14030} #如果是docker运行，不需要指定端口
 eureka:
   instance:
-    hostname: ${EUREKA_HOST}  #指定该Eureka实例的主机名，需要host映射
+    hostname: ${EUREKA_HOST:localhost}  #指定该Eureka实例的主机名，需要host映射，docker需要指定docker的服务名
     prefer-ip-address: false
   client:
     serviceUrl:  #高可用
-      defaultZone:  ${EUREKA_CENTER_REG}
+      defaultZone:  ${EUREKA_CENTER_REG:http://localhost:14030/eureka/} #其他注册中心地址

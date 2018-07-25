@@ -1,4 +1,7 @@
 #多节点固定模式
+spring:
+  application:
+    name: ${APPLICATION_NAME:eureka-center}
 server:
   port: ${EUREKA_PORT:14032}
 eureka:
