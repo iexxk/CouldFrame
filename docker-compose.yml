@@ -7,7 +7,7 @@ services:
     ports:
       - 14030:14030
     environment:
-      EUREKA_CENTER_REG: http://eureka-center-peer2:14032/eureka/,http://eureka-center-peer1:14031/eureka/
+      EUREKA_CENTER_REG: http://eureka-center-peer2:14030/eureka/,http://eureka-center-peer1:14030/eureka/
     depends_on:
       - eureka-center-peer1
       - eureka-center-peer2
@@ -21,12 +21,12 @@ services:
     restart: always
     image: couldframe/master/eurekacenter:latest
     ports:
-      - 14031:14031
+      - 14031:14030   #该端口只是对外部查看用，可以不开启
     command: ["java","-jar","app.jar","--spring.profiles.active=peer"]   #以集群模式启动
     environment:
-    #  EUREKA_PORT: 14031
+    #  EUREKA_PORT: 14031  #默认不要修改端口，因为健康检查端口是固定的
       EUREKA_HOST: eureka-center-peer1  #对应服务名称
-      EUREKA_CENTER_REG: http://eureka-center-peer2:14032/eureka/  #对应其他节点服务名称
+      EUREKA_CENTER_REG: http://eureka-center-peer2:14030/eureka/  #对应其他节点服务名称
     deploy:
       replicas: 1
       restart_policy:
@@ -37,12 +37,12 @@ services:
     restart: always
     image: couldframe/master/eurekacenter:latest
     ports:
-      - 14032:14032
+   #   - 14032:14030  #该端口只是对外部查看用，可以不开启
     command: ["java","-jar","app.jar","--spring.profiles.active=peer"]  #以集群模式启动
     environment:
-   #   EUREKA_PORT: 14032
+   #   EUREKA_PORT: 14032  #默认不要修改端口，因为健康检查端口是固定的
       EUREKA_HOST: eureka-center-peer2  #对应服务名称
-      EUREKA_CENTER_REG: http://eureka-center-peer1:14031/eureka/ #对应其他节点服务名称
+      EUREKA_CENTER_REG: http://eureka-center-peer1:14030/eureka/ #对应其他节点服务名称
     deploy:
       replicas: 1
       restart_policy:
