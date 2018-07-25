@@ -1,0 +1,16 @@
+server:
+  port: ${SERVER_PORT:14030}
+spring:
+  application:
+    name: ${APPLICATION_NAME:user-server}
+  cloud:
+    config:
+      label: ${CONFIG_LABEL:master}
+      profile: ${CONFIG_PROFILE:dev}
+      discovery:
+        enabled: true
+        service-id:  ${CONFIG_SERVICE:config-server}   #配置服务，服务名
+eureka:
+  client:
+    service-url:
+      defaultZone:  ${EUREKA_CENTER_REG} #注意要加eureka，不然找不到

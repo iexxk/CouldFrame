@@ -1,6 +1,25 @@
 #微服务架构
 version: '3'
 services:
+  user-server:
+    restart: always
+    image: couldframe/master/userserver:latest
+    ports:
+      - 14033:14030
+    environment:
+      CONFIG_LABEL: master
+      CONFIG_PROFILE: dev
+      CONFIG_SERVICE: config-server
+      EUREKA_CENTER_REG: http://eureka-center-peer2:14030/eureka/,http://eureka-center-peer1:14030/eureka/
+    depends_on:
+      - eureka-center-peer1
+      - eureka-center-peer2
+    deploy:
+      replicas: 1 #这里设置两个，但是只识别出来一个，但是复制一个一摸一样的服务，eureka却能识别出两个
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == worker]
   gateway:
     restart: always
     image: couldframe/master/gateway:latest
