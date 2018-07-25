@@ -6,7 +6,7 @@ pipeline {
         choice(name: 'project_choice',
                 choices: 'eurekacenter' +
                         '\nconfigserver' +
-                        '\neurekafeign' +
+                        '\ngateway' +
                         '\neurekazuul' +
                         '\nribbonrest' +
                         '\nconfigserver' +
