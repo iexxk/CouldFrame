@@ -36,7 +36,7 @@ services:
   eureka-center-peer2:
     restart: always
     image: couldframe/master/eurekacenter:latest
-    ports:
+ #   ports:
    #   - 14032:14030  #该端口只是对外部查看用，可以不开启
     command: ["java","-jar","app.jar","--spring.profiles.active=peer"]  #以集群模式启动
     environment:
