@@ -2,7 +2,7 @@ server:
   port: ${SERVER_PORT:14030}
 spring:
   application:
-    name: ${APPLICATION_NAME:configserver}
+    name: ${APPLICATION_NAME:config-server}
   cloud:
     config:
       label: ${CONFIG_LABEL:master} #指明远程仓库的分支
