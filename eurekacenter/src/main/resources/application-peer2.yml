@@ -1,4 +1,7 @@
 #多节点固定模式
+spring:
+  application:
+    name: ${EUREKA_HOST:eureka-center-peer2}
 server:
   port: ${EUREKA_PORT:14032}
 eureka:

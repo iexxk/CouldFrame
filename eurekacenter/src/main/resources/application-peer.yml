@@ -1,4 +1,4 @@
-#多节点模式
+#多节点动态参数模式
 spring:
   application:
     name: ${EUREKA_HOST}
@@ -11,5 +11,3 @@ eureka:
   client:
     serviceUrl:  #高可用
       defaultZone:  ${EUREKA_CENTER_REG}
-    register-with-eureka: true
-    fetch-registry: true
