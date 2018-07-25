@@ -8,6 +8,8 @@ eureka:
   client:
     serviceUrl:  #高可用
       defaultZone:  ${EUREKA_CENTER_REG}
+    register-with-eureka: true
+    fetch-registry: true
 spring:
   application:
     name: ${EUREKA_HOST}
